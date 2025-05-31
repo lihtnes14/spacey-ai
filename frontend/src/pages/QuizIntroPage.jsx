@@ -89,11 +89,11 @@ const QuizIntroPage = () => {
     setMessages((prev) => [...prev, { from: "user", text: input }]);
 
     try {
-      const res = await fetch("http://localhost:5001/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
-      });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: input }),
+    });
 
       const data = await res.json();
       setMessages((prev) => [...prev, { from: "ai", text: data.reply }]);
